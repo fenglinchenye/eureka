@@ -9,6 +9,7 @@ import com.netflix.discovery.EurekaClientConfig;
 import com.netflix.discovery.EurekaNamespace;
 
 /**
+ * 设置 EurekaClientConfig （Eureka客户端配置）的生成工厂
  * This provider is necessary because the namespace is optional.
  * @author elandau
  */

@@ -20,19 +20,22 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
+ * DNS 解析器
  * @author Tomasz Bak
  */
 public interface DnsService {
 
     /**
      * Resolve host name to the bottom A-Record or the latest available CNAME
-     *
+     * @param hostName
      * @return IP address
      */
     String resolveIp(String hostName);
 
     /**
      * Resolve A-record entry for a given domain name.
+     * @param rootDomainName
+     * @return
      */
     @Nullable
     List<String> resolveARecord(String rootDomainName);

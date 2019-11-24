@@ -1,3 +1,8 @@
+/**
+ * Eureka 计划使用 Google Guice 实现依赖注入
+ * 一方面 Guice 是轻量级的依赖注入框架
+ * 另一方面 避免了和业务代码的Spring 版本冲突
+ */
 package com.netflix.discovery.guice;
 
 import com.google.inject.AbstractModule;

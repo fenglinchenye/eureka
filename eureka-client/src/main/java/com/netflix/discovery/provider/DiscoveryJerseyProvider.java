@@ -40,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 该类声明自定义的Jersey 请求和响应的序列化和反序列化实现
  * A custom provider implementation for Jersey that dispatches to the
  * implementation that serializes/deserializes objects sent to and from eureka
  * server.

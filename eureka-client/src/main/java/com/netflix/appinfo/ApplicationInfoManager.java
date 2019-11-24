@@ -122,6 +122,7 @@ public class ApplicationInfoManager {
     public void initComponent(EurekaInstanceConfig config) {
         try {
             this.config = config;
+            // InstanceInfo 由 EurekaInstanceConfig 生成
             this.instanceInfo = new EurekaConfigBasedInstanceInfoProvider(config).get();
         } catch (Throwable e) {
             throw new RuntimeException("Failed to initialize ApplicationInfoManager", e);

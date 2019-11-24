@@ -90,9 +90,18 @@ public class DiscoveryClientResource extends ExternalResource {
         return applicationInfoManager;
     }
 
+    /**
+     * 获取EurekaClient 对象
+     * 1、先初始化{@link EurekaInstanceConfig} 生成 {@link InstanceInfo} 并共同构成 {@link ApplicationInfoManager}
+     * 2、{@link ApplicationInfoManager}和{@link EurekaClientConfig}的实例共同组成了 {@link EurekaClient}
+     * @return
+     */
     public EurekaClient getClient() {
         if (client == null) {
             try {
+                // 初始化 ApplicationInfoManager
+                // 先由 初始化EurekaInstanceConfig 在 由此对象初始化 InstanceInfo
+                // 然后由 这两个对象共同组成了 ApplicationManager
                 applicationInfoManager = createApplicationManager();
                 EurekaClientConfig clientConfig = createEurekaClientConfig();
 

@@ -88,6 +88,7 @@ import com.netflix.servo.monitor.Monitors;
 import com.netflix.servo.monitor.Stopwatch;
 
 /**
+ * 注册发现  客户端实现类
  * The class that is instrumental for interactions with <tt>Eureka Server</tt>.
  *
  * <p>

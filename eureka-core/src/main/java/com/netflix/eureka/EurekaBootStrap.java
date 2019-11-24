@@ -50,6 +50,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Eureka-Server 的 启动类
  * The class that kick starts the eureka server.
  *
  * <p>
