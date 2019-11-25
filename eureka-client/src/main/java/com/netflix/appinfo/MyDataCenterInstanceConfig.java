@@ -22,6 +22,7 @@ import javax.inject.Singleton;
 
 /**
  * An {@link InstanceInfo} configuration for the non-AWS datacenter.
+ * 非 AWS 数据中心的Eureka 应用实例配置实现类
  *
  * @author Karthik Ranganathan
  *

@@ -114,6 +114,12 @@ public interface EurekaInstanceConfig {
      * {@link #getLeaseExpirationDurationInSeconds()}, eureka server will remove
      * the instance from its view, there by disallowing traffic to this
      * instance.
+     * 指示eureka客户端需要多长时间（以秒为单位）发送*心跳信号到eureka服务器，以指示它仍然存在
+     *
+     *租约续约频率，单位：秒
+     * 应用不断的通过按照该频率发送心跳给Eureka-Server 以达到续约的作用。
+     * 当Eureka-Server 超过最大频率未收到续约（心跳） 契约失效，进行应用移除。
+     * 应用移除后，其他应用无法从Eureka-Server 获取该应用
      *
      * <p>
      * Note that the instance could still not take traffic if it implements
@@ -137,6 +143,7 @@ public interface EurekaInstanceConfig {
      * the value specified in {@link #getLeaseRenewalIntervalInSeconds()}
      * .
      * </p>
+     * 契约过期时间，单位：秒
      *
      * @return value indicating time in seconds.
      */
@@ -203,6 +210,8 @@ public interface EurekaInstanceConfig {
     Map<String, String> getMetadataMap();
 
     /**
+     * 数据中心信息
+     *
      * Returns the data center this instance is deployed. This information is
      * used to get some AWS specific instance information if the instance is
      * deployed in AWS.
@@ -368,6 +377,8 @@ public interface EurekaInstanceConfig {
     String[] getDefaultAddressResolutionOrder();
 
     /**
+     * 配置命名空间
+     * 默认使用eureka
      * Get the namespace used to find properties.
      * @return the namespace used to find properties.
      */

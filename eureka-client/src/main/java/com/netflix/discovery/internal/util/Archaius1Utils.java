@@ -21,15 +21,22 @@ public final class Archaius1Utils {
     private static final String EUREKA_ENVIRONMENT = "eureka.environment";
 
     public static DynamicPropertyFactory initConfig(String configName) {
-
+        // 配置文件对象
         DynamicPropertyFactory configInstance = DynamicPropertyFactory.getInstance();
+        // 配置文件名
+        // 从环境变量 eureka.client.props 获取配置文件名。如果未配置，使用参数configName.
+        // 即CommonConstants.CONFIG_FILE_NAME("eureka-client")
+        // DynamicPropertyFactory 对应Property 处理
         DynamicStringProperty EUREKA_PROPS_FILE = configInstance.getStringProperty("eureka.client.props", configName);
-
+        // 配置文件环境
+        //从环境变量读取文件配置信息，获取配置文件环境
         String env = ConfigurationManager.getConfigInstance().getString(EUREKA_ENVIRONMENT, "test");
         ConfigurationManager.getConfigInstance().setProperty(ARCHAIUS_DEPLOYMENT_ENVIRONMENT, env);
-
+        // 将配置文件加载到环境变量
         String eurekaPropsFile = EUREKA_PROPS_FILE.get();
         try {
+            //读取配置文件到环境变量，首先读取${eureka.client.props}对应的配置文件;
+            //然后读取${eureka.client.props}-${eureka.environment} 对应的配置文件。若有相同属性,进行覆盖
             ConfigurationManager.loadCascadedPropertiesFromResources(eurekaPropsFile);
         } catch (IOException e) {
             logger.warn(
