@@ -77,6 +77,8 @@ public interface EurekaClientConfig {
     int getInitialInstanceInfoReplicationIntervalSeconds();
 
     /**
+     * 轮询获取地址变更频率
+     * 默认是 300s
      * Indicates how often(in seconds) to poll for changes to eureka server
      * information.
      *
@@ -184,6 +186,7 @@ public interface EurekaClientConfig {
     int getEurekaServerTotalConnectionsPerHost();
 
     /**
+     * 获取Eureka-Server 的 URL Context
      * Gets the URL context to be used to construct the <em>service url</em> to
      * contact eureka server when the list of eureka servers come from the
      * DNS.This information is not required if the contract returns the service
@@ -206,6 +209,7 @@ public interface EurekaClientConfig {
     String getEurekaServerURLContext();
 
     /**
+     * 获取Eureka-Server 的端口
      * Gets the port to be used to construct the <em>service url</em> to contact
      * eureka server when the list of eureka servers come from the DNS.This
      * information is not required if the contract returns the service urls by
@@ -249,6 +253,7 @@ public interface EurekaClientConfig {
     String getEurekaServerDNSName();
 
     /**
+     * 是否使用DNS 方式进行获取Eureka-Server URL 地址
      * Indicates whether the eureka client should use the DNS mechanism to fetch
      * a list of eureka servers to talk to. When the DNS name is updated to have
      * additional servers, that information is used immediately after the eureka
@@ -294,6 +299,7 @@ public interface EurekaClientConfig {
     }
 
     /**
+     * 优先使用相同区（ZONE）的 Eureka-Server
      * Indicates whether or not this instance should try to use the eureka
      * server in the same zone for latency and/or other reason.
      *
@@ -381,6 +387,8 @@ public interface EurekaClientConfig {
     /**
      * Gets the region (used in AWS datacenters) where this instance resides.
      *
+     * Eureka-Client 所在区域
+     *
      * @return AWS region where this instance resides.
      */
     String getRegion();
@@ -388,6 +396,8 @@ public interface EurekaClientConfig {
     /**
      * Gets the list of availability zones (used in AWS data centers) for the
      * region in which this instance resides.
+     * Eureka-Client 所在地区(region) 可用区(zone)集合
+     * 该参数虽然是数组，第一个元素代表其所在的可用区
      *
      * <p>
      * <em>The changes are effective at runtime at the next registry fetch cycle as specified by

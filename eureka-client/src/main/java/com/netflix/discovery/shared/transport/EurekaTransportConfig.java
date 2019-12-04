@@ -8,11 +8,14 @@ package com.netflix.discovery.shared.transport;
 public interface EurekaTransportConfig {
 
     /**
+     * EurekaHttpClient 会话周期性 重连时间，单位：秒
      * @return the reconnect inverval to use for sessioned clients
      */
     int getSessionedClientReconnectIntervalSeconds();
 
     /**
+     * 重试 EurekaHttpClient
+     * 请求失败的Eureka-Server 隔离集合占比Eureka-Server 全量占比，超过该比例。进行清空
      * @return the percentage of the full endpoints set above which the quarantine set is cleared in the range [0, 1.0]
      */
     double getRetryableClientQuarantineRefreshPercentage();
@@ -31,21 +34,25 @@ public interface EurekaTransportConfig {
     boolean applicationsResolverUseIp();
 
     /**
+     * 异步解析EndPoint 集群频率 单位：毫秒
      * @return the interval to poll for the async resolver.
      */
     int getAsyncResolverRefreshIntervalMs();
 
     /**
+     * 异步解析器预热解析EndPoint 集群超时时间，单位：毫秒
      * @return the async refresh timeout threshold in ms.
      */
     int getAsyncResolverWarmUpTimeoutMs();
 
     /**
+     * 异步解析器线程池大小
      * @return the max threadpool size for the async resolver's executor
      */
     int getAsyncExecutorThreadPoolSize();
 
     /**
+     * 写入与读取集群
      * The remote vipAddress of the primary eureka cluster to register with.
      *
      * @return the vipAddress for the write cluster to register with

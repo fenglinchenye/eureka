@@ -21,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ *
+ * 令牌桶
  * Rate limiter implementation is based on token bucket algorithm. There are two parameters:
  * <ul>
  * <li>
@@ -63,7 +65,8 @@ public class RateLimiter {
     }
 
     public boolean acquire(int burstSize, long averageRate, long currentTimeMillis) {
-        if (burstSize <= 0 || averageRate <= 0) { // Instead of throwing exception, we just let all the traffic go
+        if (burstSize <= 0 || averageRate <= 0) {
+            // Instead of throwing exception, we just let all the traffic go
             return true;
         }
 
@@ -83,7 +86,8 @@ public class RateLimiter {
             if (lastRefillTime.compareAndSet(refillTime, newRefillTime)) {
                 while (true) {
                     int currentLevel = consumedTokens.get();
-                    int adjustedLevel = Math.min(currentLevel, burstSize); // In case burstSize decreased
+                    // In case burstSize decreased
+                    int adjustedLevel = Math.min(currentLevel, burstSize);
                     int newLevel = (int) Math.max(0, adjustedLevel - newTokens);
                     if (consumedTokens.compareAndSet(currentLevel, newLevel)) {
                         return;
